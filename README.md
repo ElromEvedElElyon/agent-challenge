@@ -1,89 +1,119 @@
-# Nosana x ElizaOS Agent Challenge
+# ZION Personal Agent
 
-![ElizaOS](./assets/NosanaXEliza.jpg)
+**Sovereign crypto intelligence agent built on ElizaOS, deployed on Nosana.**
 
-Build your own **personal AI agent** using [ElizaOS](https://elizaos.com) and deploy it on the [Nosana](https://nosana.com) decentralized compute network. Win a share of **$3,000 USDC** in prizes.
-
----
-
-## The Challenge
-
-Inspired by [OpenClaw](https://openclaw.ai/) — the self-hosted personal AI movement — this challenge is about giving AI back to the individual. Build an agent that runs on **your own infrastructure**, handles **your own tasks**, and keeps **your own data**.
-
-> **Theme: Personal AI Agents** — Build an AI agent that acts as a personal assistant, automate your life, or solve a real problem for yourself or your community. The use case is entirely up to you.
-
-**Framework:** [ElizaOS](https://elizaos.com) (latest v2)
-**Compute:** [Nosana](https://nosana.com) decentralized GPU network
-**Model:** Qwen3.5-27B (hosted endpoint provided by Nosana)
+Nosana Builders Challenge: ElizaOS Edition submission.
 
 ---
 
-## Prizes — $3,000 USDC Total
+## What is ZION?
 
-| Place | Prize |
-|-------|-------|
-| 🥇 1st | $1,000 USDC |
-| 🥈 2nd | $750 USDC |
-| 🥉 3rd | $450 USDC |
-| 4th | $200 USDC |
-| 5th–10th | $100 USDC each |
+ZION is an autonomous crypto intelligence agent that combines real-time market data, security analysis, and builder-authority content generation into a single personal AI system. It runs on decentralized infrastructure via Nosana, powered by Qwen3.5-27B inference.
 
----
+ZION is not a chatbot. It is an intelligence system designed for crypto operators who need:
 
-## Schedule
-
-Follow Nosana's Luma for more information: [Nosana Luma](https://luma.com/calendar/cal-RF19mq3EtF4juLc)
-
-![](./assets/image.png)
+- **Real-time market data** from CoinGecko (10,000+ assets, no API key required)
+- **Market sentiment tracking** via the Crypto Fear & Greed Index
+- **Security analysis frameworks** for smart contract evaluation
+- **Builder-authority content generation** with live data backing every claim
+- **Sovereign deployment** on Nosana's decentralized GPU network
 
 ---
 
-## What to Build
+## Architecture
 
-There are no strict requirements on use case — build whatever is most useful to you. Some ideas to get started:
+```
+User Request
+    |
+    v
+ElizaOS Runtime (Qwen3.5-27B via Nosana)
+    |
+    +-- ZION Character (builder-authority persona)
+    |
+    +-- ZION Plugin (src/index.ts)
+    |     |
+    |     +-- GET_CRYPTO_PRICE     -> CoinGecko /simple/price
+    |     +-- GET_FEAR_GREED       -> alternative.me /fng
+    |     +-- GET_MARKET_OVERVIEW  -> CoinGecko /coins/markets
+    |     +-- GENERATE_MARKET_BRIEF -> Combined data + content gen
+    |     +-- SECURITY_SCAN        -> Vulnerability framework
+    |     +-- Market Data Provider -> Background BTC/ETH/SOL context
+    |
+    +-- @elizaos/plugin-bootstrap (core capabilities)
+    +-- @elizaos/plugin-openai (Nosana endpoint)
+```
 
-- 🗂️ **Personal assistant** — calendar, tasks, email drafting, reminders
-- 🔍 **Research agent** — web search, summarization, knowledge synthesis
-- 📱 **Social media manager** — Twitter/X, Telegram, Discord automation
-- 💰 **DeFi/crypto agent** — portfolio monitoring, on-chain alerts, trading insights
-- 🏠 **Home automation** — smart home control, IoT integration
-- 🛠️ **DevOps helper** — monitor services, automate deployments
-- 🎨 **Content creator** — blog posts, social copy, creative writing
-
-**Tip:** ElizaOS has a rich [plugin ecosystem](https://elizaos.github.io/eliza/docs/core/plugins). Explore existing plugins and templates before building from scratch — you might find 80% of what you need already exists.
+All external API calls use free, public endpoints. No API keys required for core functionality.
 
 ---
 
-## Getting Started
+## Custom Plugin: ZION Crypto Intelligence
+
+The custom plugin (`src/index.ts`) provides five actions and one context provider:
+
+### Actions
+
+| Action | Trigger | Data Source | Description |
+|--------|---------|-------------|-------------|
+| `GET_CRYPTO_PRICE` | "price of BTC", "how much is ETH" | CoinGecko | Fetches live price, market cap, 24h volume, and 24h change for any of 10,000+ cryptocurrencies |
+| `GET_FEAR_GREED` | "market sentiment", "fear and greed" | alternative.me | Returns the current Fear & Greed Index value with builder-authority analysis of what it means |
+| `GET_MARKET_OVERVIEW` | "market overview", "top coins" | CoinGecko | Top 10 cryptocurrencies by market cap with prices, changes, and market assessment |
+| `GENERATE_MARKET_BRIEF` | "write a tweet", "market brief" | CoinGecko + alternative.me | Generates 3 builder-authority style tweet options using live BTC/ETH/SOL data and Fear & Greed |
+| `SECURITY_SCAN` | "is this contract safe", "security check" | Static knowledge | Smart contract security framework with top 15 vulnerabilities, tools, and verification links |
+
+### Provider
+
+| Provider | Description |
+|----------|-------------|
+| `market-data-context` | Automatically injects current BTC/ETH/SOL prices and Fear & Greed into every conversation for contextual awareness |
+
+### Supported Coins (with aliases)
+
+The price action resolves common aliases automatically: BTC, ETH, SOL, BNB, XRP, ADA, DOGE, DOT, AVAX, MATIC, LINK, UNI, ATOM, NEAR, APT, SUI, ARB, OP, NOS, FIL, AAVE, MKR, LDO, RUNE, and any CoinGecko ID.
+
+---
+
+## Character: ZION
+
+The character definition (`characters/zion-agent.character.json`) establishes ZION's identity:
+
+- **Voice**: Builder-authority style. Short declarative sentences. Data first, interpretation second. No emojis. No hashtags.
+- **Domain**: Crypto markets, DeFi, smart contract security, decentralized AI, MCP servers
+- **Philosophy**: Sovereign AI for sovereign individuals. Your data, your compute, your control.
+- **Knowledge**: 15 embedded knowledge entries covering crypto markets, security vulnerabilities, DeFi protocols, and builder culture
+- **Post examples**: 7 builder-authority style sample posts demonstrating the voice
+
+---
+
+## Quick Start
 
 ### Prerequisites
 
 - Node.js 23+
-- pnpm (`npm install -g pnpm`)
+- bun or pnpm
 - Docker (for deployment)
-- Git
 
-### Quick Start
+### Local Development
 
 ```bash
-# Fork this repo, then clone your fork
+# Clone your fork
 git clone https://github.com/YOUR-USERNAME/agent-challenge
 cd agent-challenge
 
-# Copy and configure environment variables
+# Configure environment
 cp .env.example .env
-# Edit .env with your Nosana endpoint details
+# Edit .env with the Nosana endpoint URL
 
-# Install dependencies
+# Install ElizaOS CLI
 bun i -g @elizaos/cli
 
-# Start your agent in development mode
+# Start in development mode
 elizaos dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the ElizaOS built-in client.
+Open http://localhost:3000 to interact with ZION.
 
----
+### Example Interactions
 
 ## Claim Your Nosana Builders Credits
 
@@ -111,18 +141,20 @@ OPENAI_API_KEY=nosana
 OPENAI_API_URL=https://6vq2bcqphcansrs9b88ztxfs88oqy7etah2ugudytv2x.node.k8s.prd.nos.ci/v1
 MODEL_NAME=Qwen3.5-27B-AWQ-4bit
 ```
+You: What is Bitcoin trading at?
+ZION: [Fetches live BTC price, market cap, volume, and 24h change from CoinGecko]
 
-**Model Details:**
-- **Model ID:** `Qwen3.5-27B-AWQ-4bit`
-- **Max Context Length:** 60,000 tokens
-- **Provider:** Nosana decentralized inference
-- **Base Model:** cyankiwi/Qwen3.5-27B-AWQ-4bit
+You: What is the market sentiment?
+ZION: [Returns Fear & Greed Index with builder-authority analysis]
 
-### Option B: Local Development with Ollama
+You: Give me a market overview
+ZION: [Top 10 coins by market cap with prices and market assessment]
 
-```bash
-ollama pull qwen3.5:27b # or a smaller one for your system
-ollama serve
+You: Write a tweet about Solana
+ZION: [Generates 3 builder-authority style tweet options with live SOL data]
+
+You: Is this contract safe? 0x1234...
+ZION: [Provides security framework with Etherscan links and vulnerability checklist]
 ```
 
 ```env
@@ -210,44 +242,21 @@ SQLite is configured by default — sufficient for development and small-scale a
 
 ## Deploy to Nosana
 
-> **Important:** For this challenge, you must deploy your agent to Nosana's decentralized infrastructure. Do **not** use the standard `elizaos deploy` command — that deploys to centralized cloud providers. This challenge is about embracing decentralized compute.
-
-**Why Nosana?**
-- **Decentralized** — Your agent runs on a distributed network of GPU providers, not AWS/GCP/Azure
-- **Cost-effective** — Use your free builders credits (no credit card required)
-- **Permissionless** — No vendor lock-in, full control over your infrastructure
-- **Challenge requirement** — All submissions must be deployed on Nosana
-
-### Prerequisites
-
-Before deploying, ensure you have:
-- [Docker](https://docs.docker.com/get-docker/) installed and running
-- A [Docker Hub](https://hub.docker.com/) account (free)
-- Your [Nosana builders credits](https://nosana.com/builders-credits) claimed
-
-### Step 1: Build and Push Your Docker Image
-
-Your agent needs to be containerized and available on a public registry (Docker Hub) so Nosana nodes can pull and run it.
+### Step 1: Build Docker Image
 
 ```bash
-# Build your Docker image
-docker build -t yourusername/nosana-eliza-agent:latest .
-
-# Test it locally first (recommended)
-docker run -p 3000:3000 --env-file .env yourusername/nosana-eliza-agent:latest
-
-# Visit http://localhost:3000 to verify it works
-
-# Log in to Docker Hub
-docker login
-
-# Push to Docker Hub (make it public)
-docker push yourusername/nosana-eliza-agent:latest
+docker build -t standardbitcoin10/zion-personal-agent:latest .
+docker run -p 3000:3000 --env-file .env standardbitcoin10/zion-personal-agent:latest
+# Verify at http://localhost:3000
+docker push standardbitcoin10/zion-personal-agent:latest
 ```
 
-> **Tip:** Replace `yourusername` with your actual Docker Hub username. Make sure your repository is **public** so Nosana nodes can pull it.
+### Step 2: Deploy via Nosana Dashboard
 
-### Step 2: Configure Your Job Definition
+1. Visit [dashboard.nosana.com/deploy](https://dashboard.nosana.com/deploy)
+2. Paste the contents of `nos_job_def/nosana_eliza_job_definition.json`
+3. Select `nvidia-3090` or `nvidia-rtx-4090` market
+4. Deploy and wait for node assignment
 
 Edit `nos_job_def/nosana_eliza_job_definition.json` and update the Docker image reference:
 
@@ -303,167 +312,67 @@ For developers who prefer the command line or want to automate deployments:
 3. Learn more about [Nosana Job Definition Here](https://learn.nosana.com/deployments/jobs/job-definition/intro.html)
 
 ```bash
-# Install the Nosana CLI globally
 npm install -g @nosana/cli
 
-# Deploy your agent
 nosana job post \
   --file ./nos_job_def/nosana_eliza_job_definition.json \
-  --market nvidia-4090 \
+  --market nvidia-3090 \
   --timeout 300 \
-  --api <API_KEY>
-
-# Monitor your deployment
-nosana job status <job-id>
-
-# View logs
-nosana job logs <job-id>
+  --api YOUR_API_KEY
 ```
-
-**CLI Flags Explained:**
-- `--file` — Path to your job definition JSON
-- `--market` — Which GPU market to use (nvidia-3090, nvidia-rtx-4090, etc.)
-- `--timeout` — Maximum job runtime in minutes
-
-### Step 5: Verify Your Deployment
-
-Once your job is running on Nosana:
-
-1. **Test the endpoint** — Visit the public URL provided by Nosana
-2. **Check agent responsiveness** — Send a test message to your agent
-3. **Monitor logs** — Use the Nosana Dashboard or CLI to view logs
-4. **Verify inference** — Ensure the Qwen3.5-27B model is responding correctly
-
-### Troubleshooting
-
-**Agent not starting?**
-- Check that your Docker image is public on Docker Hub
-- Verify your job definition JSON is valid
-- Ensure environment variables are correctly set
-- Check Nosana dashboard logs for error messages
-
-**Slow response times?**
-- Consider using a higher-tier GPU market (nvidia-rtx-4090)
-- Optimize your ElizaOS configuration
-- Check if the Nosana inference endpoint is reachable
-
-**Out of credits?**
-- Visit [nosana.com/builders-credits](https://nosana.com/builders-credits) to check your balance
-- Credits are airdropped twice daily — be patient if you just signed up
-
-**Need help?**
-- Join the [Nosana Discord](https://nosana.com/discord) for support
-- Check the [Nosana documentation](https://learn.nosana.io)
-- Review the [Nosana CLI docs](https://github.com/nosana-ci/nosana-cli)
-
----
-
-## What You'll Build
-
-Your submission should include:
-- **A working AI agent** built with ElizaOS
-- **A frontend interface** to interact with your agent (web UI, chat interface, dashboard, etc.)
-- **Deployment on Nosana** — your agent must run on Nosana's decentralized infrastructure
-
-**The deeper your Nosana integration, the better your score.** We're looking for projects that fully embrace decentralized infrastructure — not just a minimal deployment, but thoughtful integration into your architecture.
-
-### Examples of Deep Integration (Better Scores):
-- Using Nosana for both training and inference
-- Multi-node deployments across Nosana's network
-- Custom deployment pipelines using Nosana CLI
-- Monitoring and observability integrated with Nosana infrastructure
-- Storage solutions that leverage decentralized networks
-- Creative use of Nosana's compute marketplace
-
----
-
-## Submission
-
-Submit your project via the official submission page: **[superteam.fun/earn/listing/nosana-builders-elizaos-challenge/](https://superteam.fun/earn/listing/nosana-builders-elizaos-challenge/)** before **April 14, 2026**.
-
-**Submission Checklist** — All items are required:
-
-- [ ] **Fork this repository** and build your agent on the `elizaos-challenge` branch
-- [ ] **Build a frontend/UI** for interacting with your agent
-- [ ] **Deploy to Nosana** and get your public deployment URL (agent must run on Nosana infrastructure)
-- [ ] **Star the following repositories:**
-  - [ ] [nosana-ci/agent-challenge](https://github.com/nosana-ci/agent-challenge)
-  - [ ] [nosana-ci/nosana-programs](https://github.com/nosana-ci/nosana-programs)
-  - [ ] [nosana-ci/nosana-kit](https://github.com/nosana-ci/nosana-kit)
-  - [ ] [nosana-ci/nosana-cli](https://github.com/nosana-ci/nosana-cli)
-- [ ] **Make a social media post** about your project on your platform of choice (X/Twitter, LinkedIn, Bluesky, Instagram, or other)
-- [ ] **Provide your GitHub fork link** (public repository)
-- [ ] **Provide your Nosana deployment URL** (running agent)
-- [ ] **Write a description** of your agent and what it does (≤300 words)
-- [ ] **Record a video demo** (<1 minute) showing your agent and frontend in action
-
-> **⚠️ Important:** Submissions that do not meet these requirements will not be considered.
-
-> For complete submission requirements and additional information, visit the [official challenge page](https://superteam.fun/earn/listing/nosana-builders-elizaos-challenge/).
-
----
-
-## Judging Criteria
-
-| Criterion | Weight |
-|-----------|--------|
-| Technical implementation | 25% |
-| Nosana integration depth | 25% |
-| Usefulness & UX | 25% |
-| Creativity & originality | 15% |
-| Documentation | 10% |
-
-**Judging Details:**
-- **Technical implementation (25%)** — Code quality, architecture, and ElizaOS best practices
-- **Nosana integration depth (25%)** — How deeply Nosana is integrated into your deployment and infrastructure
-- **Usefulness & UX (25%)** — Real-world applicability, frontend quality, and user experience
-- **Creativity & originality (15%)** — Innovative use cases and novel approaches
-- **Documentation (10%)** — Code quality, README, setup instructions
-
-**Judges:** DevRel Lead & Ecosystem Specialist, Nosana
 
 ---
 
 ## Project Structure
 
 ```
-├── characters/
-│   └── agent.character.json   # Your agent's character definition
-├── src/
-│   └── index.ts               # Custom plugin entry point (optional)
-├── nos_job_def/
-│   └── nosana_eliza_job_definition.json  # Nosana deployment config
-├── Dockerfile                 # Container configuration
-├── .env.example               # Environment variable template
-└── package.json
+agent-challenge/
+  characters/
+    zion-agent.character.json   # ZION character definition
+    agent.character.json        # Original template (kept for reference)
+  src/
+    index.ts                    # ZION Crypto Intelligence Plugin (5 actions + 1 provider)
+  nos_job_def/
+    nosana_eliza_job_definition.json  # Nosana deployment config
+  Dockerfile                    # Container configuration
+  .env.example                  # Environment variable template
+  package.json                  # Dependencies and scripts
+  tsconfig.json                 # TypeScript configuration
 ```
 
 ---
 
-## Resources
+## Technical Details
 
-### ElizaOS
-- [ElizaOS Documentation](https://elizaos.github.io/eliza/docs) — Full framework docs
-- [ElizaOS Plugin Directory](https://elizaos.github.io/eliza/docs/core/plugins) — Browse available plugins
-- [ElizaOS GitHub](https://github.com/elizaos/eliza) — Source code and examples
-- [ElizaOS Discord](https://discord.gg/elizaos) — Community support
-
-### Nosana
-- [Nosana Documentation](https://docs.nosana.io) — Platform guide
-- [Nosana Dashboard](https://dashboard.nosana.com) — Deploy and manage jobs
-- [Nosana CLI](https://github.com/nosana-ci/nosana-cli) — Command-line deployment
-- [Nosana Discord](https://nosana.com/discord) — Support and endpoint URL
-
-### Qwen3.5
-- [Qwen3.5-27B on HuggingFace](https://huggingface.co/Qwen/Qwen3.5-27B)
+- **Runtime**: ElizaOS v2 with Qwen3.5-27B-AWQ-4bit via Nosana inference
+- **Plugin API**: Custom TypeScript plugin using `@elizaos/core` Plugin interface
+- **External APIs**: CoinGecko (public, free tier), alternative.me (public, free)
+- **Coin resolution**: Automatic alias mapping for 30+ common symbols to CoinGecko IDs
+- **Content generation**: Three distinct styles per request (data-driven, contrarian, market brief)
+- **Security framework**: Top 15 vulnerability checklist with tool recommendations
+- **Context provider**: Background market data injected into every conversation turn
 
 ---
 
-## Support & Community
+## Nosana Integration
 
-- **Discord** — Join [Nosana Discord](https://nosana.com/discord) for support, the Nosana endpoint URL, and to connect with other builders
-- **Twitter/X** — Follow [@nosana_ai](https://x.com/nosana_ai) and [@elizaos](https://x.com/elizaos) for updates
-- **GitHub** — Open an issue in this repo if you find problems with the template
+ZION is built specifically for Nosana's decentralized compute:
+
+- **Inference**: Qwen3.5-27B model served via Nosana's hosted endpoint
+- **Deployment**: Docker container deployed to Nosana GPU marketplace
+- **Job Definition**: Custom Nosana job definition with environment configuration
+- **Compute Market**: Compatible with nvidia-3090 and nvidia-rtx-4090 markets
+- **Sovereign by design**: No AWS, no GCP, no Azure. Decentralized compute only.
+
+---
+
+## Built With
+
+- [ElizaOS](https://elizaos.com) -- AI agent framework
+- [Nosana](https://nosana.com) -- Decentralized GPU compute
+- [Qwen3.5-27B](https://huggingface.co/Qwen/Qwen3.5-27B) -- Language model
+- [CoinGecko API](https://www.coingecko.com/en/api) -- Crypto market data
+- [Alternative.me](https://alternative.me/crypto/fear-and-greed-index/) -- Fear & Greed Index
 
 ---
 
@@ -479,8 +388,8 @@ Submit your project via the official submission page: **[superteam.fun/earn/list
 
 ## License
 
-This template is open source and available under the [MIT License](./LICENSE).
+MIT
 
 ---
 
-**Built with ElizaOS · Deployed on Nosana · Powered by Qwen3.5**
+**ZION -- Sovereign crypto intelligence. Decentralized compute. Builder-authority signal.**
