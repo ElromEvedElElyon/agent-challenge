@@ -257,11 +257,11 @@ const crossChainScanAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Scan oracle health across chains" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Running cross-chain oracle scan now.",
           action: "CROSS_CHAIN_SCAN",
@@ -270,11 +270,11 @@ const crossChainScanAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Are the Chainlink feeds healthy?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Checking Chainlink oracle status across all monitored chains.",
           action: "CROSS_CHAIN_SCAN",
@@ -390,11 +390,11 @@ const stablecoinMonitorAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Are stablecoins holding their peg?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Scanning stablecoin prices across all chains.",
           action: "STABLECOIN_MONITOR",
@@ -403,11 +403,11 @@ const stablecoinMonitorAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Check USDC depeg risk" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Running cross-chain stablecoin depeg analysis.",
           action: "STABLECOIN_MONITOR",
@@ -536,11 +536,11 @@ const bridgeRiskReportAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "How safe are crypto bridges?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Generating cross-chain bridge risk report.",
           action: "BRIDGE_RISK_REPORT",
@@ -549,11 +549,11 @@ const bridgeRiskReportAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Which bridges have the most volume?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Pulling bridge data from DeFiLlama.",
           action: "BRIDGE_RISK_REPORT",
@@ -686,11 +686,11 @@ const whaleAlertAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Any whale activity happening?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Checking whale activity and large transfer patterns.",
           action: "WHALE_ALERT",
@@ -699,11 +699,11 @@ const whaleAlertAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Monitor large crypto transfers" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Scanning global volume metrics and bridge flows.",
           action: "WHALE_ALERT",
@@ -773,12 +773,12 @@ export const chainguardPlugin: Plugin = {
   description:
     "Cross-chain security monitoring plugin: real-time Chainlink oracle scanning, stablecoin depeg detection, bridge risk analysis, and whale activity monitoring across 6 EVM chains.",
   actions: [
-    crossChainScanAction,
-    stablecoinMonitorAction,
-    bridgeRiskReportAction,
-    whaleAlertAction,
+    crossChainScanAction as any,
+    stablecoinMonitorAction as any,
+    bridgeRiskReportAction as any,
+    whaleAlertAction as any,
   ],
-  providers: [securityContextProvider],
+  providers: [securityContextProvider as any],
   evaluators: [],
 };
 

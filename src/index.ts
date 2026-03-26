@@ -198,11 +198,11 @@ const getCryptoPriceAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "What is Bitcoin trading at right now?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Let me pull the latest BTC data.",
           action: "GET_CRYPTO_PRICE",
@@ -211,11 +211,11 @@ const getCryptoPriceAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "ETH price" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Checking ETH price now.",
           action: "GET_CRYPTO_PRICE",
@@ -224,11 +224,11 @@ const getCryptoPriceAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "How much is Solana?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Pulling SOL price data.",
           action: "GET_CRYPTO_PRICE",
@@ -330,11 +330,11 @@ const getFearGreedAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "What is the market sentiment?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Pulling the Fear and Greed Index.",
           action: "GET_FEAR_GREED",
@@ -343,11 +343,11 @@ const getFearGreedAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Fear and greed index?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Checking market sentiment now.",
           action: "GET_FEAR_GREED",
@@ -464,11 +464,11 @@ const getMarketOverviewAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Give me a market overview" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Running a full market scan.",
           action: "GET_MARKET_OVERVIEW",
@@ -477,11 +477,11 @@ const getMarketOverviewAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "What are the top coins doing?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Pulling top 10 by market cap.",
           action: "GET_MARKET_OVERVIEW",
@@ -650,11 +650,11 @@ const generateMarketBriefAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Write a tweet about Bitcoin" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Pulling live data to generate a builder-authority post.",
           action: "GENERATE_MARKET_BRIEF",
@@ -663,11 +663,11 @@ const generateMarketBriefAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Generate a market brief" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Building a data-driven market brief now.",
           action: "GENERATE_MARKET_BRIEF",
@@ -676,11 +676,11 @@ const generateMarketBriefAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Create a post about ETH" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Generating Ethereum-focused content with live data.",
           action: "GENERATE_MARKET_BRIEF",
@@ -784,11 +784,11 @@ const securityScanAction = {
   examples: [
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "Is this contract safe? 0x1234567890abcdef1234567890abcdef12345678" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Running security analysis framework.",
           action: "SECURITY_SCAN",
@@ -797,11 +797,11 @@ const securityScanAction = {
     ],
     [
       {
-        user: "{{user1}}",
+        name: "{{user1}}",
         content: { text: "What should I check before interacting with a DeFi protocol?" },
       },
       {
-        user: "ZION",
+        name: "ZION",
         content: {
           text: "Pulling the security checklist.",
           action: "SECURITY_SCAN",
@@ -894,13 +894,13 @@ export const zionPlugin: Plugin = {
   description:
     "Sovereign crypto intelligence plugin: real-time prices, market sentiment, security analysis, and builder-authority content generation.",
   actions: [
-    getCryptoPriceAction,
-    getFearGreedAction,
-    getMarketOverviewAction,
-    generateMarketBriefAction,
-    securityScanAction,
+    getCryptoPriceAction as any,
+    getFearGreedAction as any,
+    getMarketOverviewAction as any,
+    generateMarketBriefAction as any,
+    securityScanAction as any,
   ],
-  providers: [marketDataProvider],
+  providers: [marketDataProvider as any],
   evaluators: [],
 };
 
