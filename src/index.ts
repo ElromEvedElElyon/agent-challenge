@@ -904,4 +904,7 @@ export const zionPlugin: Plugin = {
   evaluators: [],
 };
 
+// Re-export ChainGuard security plugin
+export { chainguardPlugin } from "./chainguard-plugin";
+
 export default zionPlugin;
